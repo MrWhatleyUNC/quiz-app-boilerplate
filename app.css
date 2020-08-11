@@ -7,16 +7,22 @@
   *
 */
 
+h1{
+  text-align: center;
+  margin-top: 50px;
+}
+.container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 body{
   display: block;
-}
-
-h1 {
-  text-align: center;
 }
 
 footer{
@@ -32,3 +38,4 @@ footer{
 button{
   margin-top: 15px;
 }
+
