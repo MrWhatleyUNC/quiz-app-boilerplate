@@ -6,3 +6,29 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  display: block;
+}
+
+h1 {
+  text-align: center;
+}
+
+footer{
+  text-align: center;
+}
+
+.box{
+  margin: auto;
+  width: 33%;
+  border: 3px solid black;
+}
+
+button{
+  margin-top: 15px;
+}
