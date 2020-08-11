@@ -6,6 +6,7 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
 h1{
   text-align: center;
   margin-top: 50px;
@@ -14,5 +15,27 @@ h1{
   display:flex;
   justify-content: center;
   align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  display: block;
+}
+
+footer{
+  text-align: center;
+}
+
+.box{
+  margin: auto;
+  width: 33%;
+  border: 3px solid black;
+}
+
+button{
+  margin-top: 15px;
 }
 
