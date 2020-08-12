@@ -1,29 +1,55 @@
 /**
  * Example store structure
  */
-const store = {
+'use strict'
+const STORE = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'What is the capitol of Texas?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Dallas',
+        'Houston',
+        'Austin',
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Austin'
     },
     {
-      question: 'What is the current year?',
+      question: 'What is the capital ofNorth Carolina?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Fayetteville',
+        'Charlotte',
+        'Raleigh',
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'Raleigh'
     }
+    {
+      question: 'What is the capitol of Georgia?',
+      answers: [
+        'Augusta',
+        'Atlanta',
+        'Columbus',
+      ],
+      correctAnswer: 'Atlanta'
+    },
+    {
+      question: 'What is the capitol of California?',
+      answers: [
+        'Los Angeles',
+        'San Francisco',
+        'Sacremento',
+      ],
+      correctAnswer: 'Sacremento'
+    },
+    {
+      question: 'What is the capitol of Wisconsin?',
+      answers: [
+        'Madison',
+        'Green Bay',
+        'Milwaukee',
+      ],
+      correctAnswer: 'Madison'
+    },
   ],
   quizStarted: false,
   questionNumber: 0,
