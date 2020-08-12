@@ -22,7 +22,7 @@ const STORE = {
         'Raleigh',
       ],
       correctAnswer: 'Raleigh'
-    }
+    },
     {
       question: 'What is the capitol of Georgia?',
       answers: [
