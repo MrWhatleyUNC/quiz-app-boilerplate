@@ -1,30 +1,56 @@
 /**
  * Example store structure
  */
+
 'use strict';
+
 const STORE = {
   // 5 or more questions are required
-  questions: [
-    {
-      question: 'What color is broccoli?',
+  questions: [{
+      question: 'What is the capitol of Texas?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Dallas',
+        'Houston',
+        'Austin',
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Austin'
     },
     {
-      question: 'What is the current year?',
+      question: 'What is the capital ofNorth Carolina?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Fayetteville',
+        'Charlotte',
+        'Raleigh',
       ],
-      correctAnswer: '2019'
-    }
+      correctAnswer: 'Raleigh'
+    },
+    {
+      question: 'What is the capitol of Georgia?',
+      answers: [
+        'Augusta',
+        'Atlanta',
+        'Columbus',
+      ],
+      correctAnswer: 'Atlanta'
+    },
+    {
+      question: 'What is the capitol of California?',
+      answers: [
+        'Los Angeles',
+        'San Francisco',
+        'Sacremento',
+      ],
+      correctAnswer: 'Sacremento'
+    },
+    {
+      question: 'What is the capitol of Wisconsin?',
+      answers: [
+        'Madison',
+        'Green Bay',
+        'Milwaukee',
+      ],
+      correctAnswer: 'Madison'
+    },
   ],
   quizStarted: false,
   questionNumber: 0,
@@ -50,6 +76,7 @@ const STORE = {
 
 // These functions return HTML templates
 
+
 function generateQuestionPage(){
   //this should create the html for the question page
       $('main').html(` 
@@ -67,11 +94,65 @@ function generateQuestionPage(){
         </form>`
   )};
 
+function generateStartPg(){
+  let start = [];
+  start.push(`
+  <div class="container">
+    <button class='start'>Get Started</button>
+  </div>`)
+  return start
+}
+
+// function generateQuestionsArray(){
+//   let html =[];
+//   for(let i=0; i<=STORE.questions.length; i++){
+//     let questions = STORE.questions[i]
+//     console.log(questions)
+//     console.log((i+1))
+//     html.push(`
+//     <h1>Question ${(i+1)}</h1>
+//     <div class="container">${questions['question']}</div>
+//     <h2>Answers:</h2>
+//     <form>
+//       <input type="radio" id="${questions.answers[0]}" name='question${(i+1)}' value="${questions.answers[0]}">
+//       <label for="${questions.answers[0]}">${questions.answers[0]}</label><br>
+//       <input type="radio" id="${questions.answers[1]}" name='question${(i+1)}' value="${questions.answers[1]}">
+//       <label for="${questions.answers[1]}">${questions.answers[1]}</label><br>
+//       <input type="radio" id="${questions.answers[2]}" name='question${(i+1)}' value="${questions.answers[2]}">
+//       <label for="${questions.answers[2]}">${questions.answers[2]}</label><br>
+//       <button type="submit">Submit</button>
+//     </form>
+//     `)
+//   }
+// }
 
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
-/********** EVENT HANDLER FUNCTIONS **********/
+function renderStartPg(){
+  let html = generateStartPg()
+  console.log(html)
+  $('main').html(html)
+}
 
+function renderQuestions(){
+  console.log('questions rendered')
+  // let html = generateQuestionsArray()
+  // console.log(html)
+  // $('main').html(html)
+}
+/********** EVENT HANDLER FUNCTIONS **********/
+$('main').on('click','button.start',renderQuestions)
 // These functions handle events (submit, click, etc)
+
+function main(){
+  startQuiz()
+}
+
+function startQuiz(){
+  generateStartPg()
+  renderStartPg()
+}
+
+$(main)
