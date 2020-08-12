@@ -1,11 +1,10 @@
 /**
  * Example store structure
  */
-'use strict'
+// 'use strict'
 const STORE = {
   // 5 or more questions are required
-  questions: [
-    {
+  questions: [{
       question: 'What is the capitol of Texas?',
       answers: [
         'Dallas',
@@ -75,10 +74,65 @@ const STORE = {
 
 // These functions return HTML templates
 
+function generateStartPg(){
+  let start = [];
+  start.push(`
+  <div class="container">
+    <button class='start'>Get Started</button>
+  </div>`)
+  return start
+}
+
+// function generateQuestionsArray(){
+//   let html =[];
+//   for(let i=0; i<=STORE.questions.length; i++){
+//     let questions = STORE.questions[i]
+//     console.log(questions)
+//     console.log((i+1))
+//     html.push(`
+//     <h1>Question ${(i+1)}</h1>
+//     <div class="container">${questions['question']}</div>
+//     <h2>Answers:</h2>
+//     <form>
+//       <input type="radio" id="${questions.answers[0]}" name='question${(i+1)}' value="${questions.answers[0]}">
+//       <label for="${questions.answers[0]}">${questions.answers[0]}</label><br>
+//       <input type="radio" id="${questions.answers[1]}" name='question${(i+1)}' value="${questions.answers[1]}">
+//       <label for="${questions.answers[1]}">${questions.answers[1]}</label><br>
+//       <input type="radio" id="${questions.answers[2]}" name='question${(i+1)}' value="${questions.answers[2]}">
+//       <label for="${questions.answers[2]}">${questions.answers[2]}</label><br>
+//       <button type="submit">Submit</button>
+//     </form>
+//     `)
+//   }
+// }
+
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
-/********** EVENT HANDLER FUNCTIONS **********/
+function renderStartPg(){
+  let html = generateStartPg()
+  console.log(html)
+  $('main').html(html)
+}
 
+function renderQuestions(){
+  console.log('questions rendered')
+  // let html = generateQuestionsArray()
+  // console.log(html)
+  // $('main').html(html)
+}
+/********** EVENT HANDLER FUNCTIONS **********/
+$('main').on('click','button.start',renderQuestions)
 // These functions handle events (submit, click, etc)
+
+function main(){
+  startQuiz()
+}
+
+function startQuiz(){
+  generateStartPg()
+  renderStartPg()
+}
+
+$(main)
