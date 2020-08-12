@@ -66,7 +66,7 @@ function generateQuestionPage(){
           <button type="submit">Submit</button>
         </form>`
   )};
-generateQuestionPage();
+
 
 /********** RENDER FUNCTION(S) **********/
 
