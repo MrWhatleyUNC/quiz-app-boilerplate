@@ -1,7 +1,9 @@
 /**
  * Example store structure
  */
-// 'use strict'
+
+'use strict';
+
 const STORE = {
   // 5 or more questions are required
   questions: [{
@@ -73,6 +75,24 @@ const STORE = {
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
 // These functions return HTML templates
+
+
+function generateQuestionPage(){
+  //this should create the html for the question page
+      $('main').html(` 
+      <h1>Question ${STORE.questionNumber+1}</h1>
+        <div class="container">${STORE.questions[STORE.questionNumber].question}</div>
+        <h2>Answers:</h2>
+        <form action="submit" class="answers">
+          <input type="radio" id="ans1" name="answer" value="ans1">
+          <label for="ans1">${STORE.questions[STORE.questionNumber].answers[0]}</label><br>
+          <input type="radio" id="ans2" name="answer" value="ans2">
+          <label for="ans2">${STORE.questions[STORE.questionNumber].answers[1]}</label><br>
+          <input type="radio" id="ans3" name="answer" value="ans3">
+          <label for="ans3">${STORE.questions[STORE.questionNumber].answers[2]}</label><br>
+          <button type="submit">Submit</button>
+        </form>`
+  )};
 
 function generateStartPg(){
   let start = [];
