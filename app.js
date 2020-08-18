@@ -122,7 +122,6 @@ function generateResultsHTML(answer) {
   let results = []
 
   if (answer === correct) {
-    STORE.score++
     results.push(`
     <div class="result">
     Your answer is correct. Your current score is ${STORE.score} out of ${STORE.questions.length}.
@@ -194,6 +193,10 @@ function submitAnswer(e) {
   let answer = $('input:checked').val();
   console.log(answer)
   if(answer !== undefined){
+    let correct = STORE.questions[STORE.questionIndex].correctAnswer
+    if(answer === correct){
+      STORE.score++
+    }
     let results = generateResultsHTML(answer)
     renderResults(results)
     $('main').find('button.submit').remove()
