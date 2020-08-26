@@ -81,15 +81,15 @@ let score = STORE.score
 
 // These functions return HTML templates
 function generateStartPg() {
-  return $('main').html(`
+  return `
   <div class="container start">
     <button class='start'>Get Started</button>
-  </div>`)
+  </div>`
 }
 
 function generateQuestionPage() {
   //this should create the html for the question page
-  return $('main').html(`
+  return `
   <div class="box"> 
     <h2>Question ${STORE.questionIndex+1} of ${STORE.questions.length}</h2>
     <div class="container">${STORE.questions[STORE.questionIndex].question}</div>
@@ -111,43 +111,44 @@ function generateQuestionPage() {
       <button class='submit' type="submit">Submit</button>
     </form>
     <div class='results'></div>
-    <button class='next'>Next Question</button>
     </div>
   </div>
-  `)
+  `
 };
 
-function generateResultsHTML(answer) {
-  let correct = STORE.questions[STORE.questionIndex].correctAnswer
+function generateCorrectResultHTML() {
   let results = []
-
-  if (answer === correct) {
     results.push(`
     <div class="result">
     Your answer is correct. Your current score is ${STORE.score} out of ${STORE.questions.length}.
     </div>
+    <button class='next'>Next Question</button>
     `)
     return results
-  } else {
-    results.push(`
+}
+
+function generateIncorrectResultHTML(){
+  let correct = STORE.questions[STORE.questionIndex-1].correctAnswer
+  let results = []
+  results.push(`
     <div class="result">
     Your answer is incorrect. The correct answer was ${correct}. Your current score is ${STORE.score} out of ${STORE.questions.length}.
     </div>
+    <button class='next'>Next Question</button>
     `)
-    return results
-  }
+  return results
 }
 
 function generateFinalPg() {
-  return $('main').html(`
+  return `
   <div class="box">
   <h1>Final Score</h1>
-  <div class="container">
-    <div class="box">${STORE.score} out of ${STORE.questions.length}</div>
-    <button class='again'>Play Again</button>
+    <div class="container">
+      <div class="box">${STORE.score} out of ${STORE.questions.length}</div>
+      <button class='again'>Play Again</button>
+    </div>
   </div>
-  </div>
-  `)
+  `
 }
 
 /********** RENDER FUNCTION(S) **********/
@@ -155,36 +156,40 @@ function generateFinalPg() {
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 function renderStartPg() {
-  generateStartPg()
+  let startPg =generateStartPg()
+  $('main').html(startPg)
 }
 
 function renderQuestions() {
-  console.log(STORE.questionIndex)
   if (STORE.questionIndex < STORE.questions.length) {
-    console.log(STORE.questionIndex)
-    generateQuestionPage()
-    console.log('questions rendered')
+    let questionPg= generateQuestionPage()
+    $('main').html(questionPg)
   } else {
     renderFinalPg()
   }
 }
 
-function renderResults(results) {
-  console.log('results rendered')
+function renderResults(results) { 
   $('main').find('div.results').html(results)
+  $('main').find('button.submit').remove()
 }
 
 function renderFinalPg() {
-  console.log('final page rendered')
-  generateFinalPg()
-  console.log(STORE.score)
-  console.log(STORE.questionIndex)
+  let finalPg= generateFinalPg()
+  $('main').html(finalPg)
 }
 /********** EVENT HANDLER FUNCTIONS **********/
-$('main').on('click', 'button.start', renderQuestions)
-$('main').on('submit', submitAnswer)
-$('main').on('click', 'button.next', renderQuestions)
-$('main').on('click', 'button.again', startQuiz)
+//use bindEventHandlers
+
+function bindEventHandlers(){
+  $('main').on('click', 'button.start', renderQuestions)
+  $('main').on('submit', submitAnswer)
+  $('main').on('click', 'button.next', renderQuestions)
+  $('main').on('click', 'button.again', startQuiz)
+}
+
+
+
 // These functions handle events (submit, click, etc)
 
 function submitAnswer(e) {
@@ -196,13 +201,16 @@ function submitAnswer(e) {
     let correct = STORE.questions[STORE.questionIndex].correctAnswer
     if(answer === correct){
       STORE.score++
+      STORE.questionIndex++
+      let results = generateCorrectResultHTML()
+      renderResults(results)
     }
-    let results = generateResultsHTML(answer)
-    renderResults(results)
-    $('main').find('button.submit').remove()
-    STORE.questionIndex++
-    console.log(STORE.questionIndex)
+    else{
+      STORE.questionIndex++
+      let results = generateIncorrectResultHTML()
+      renderResults(results)
     }
+  }
   else{
     alert('Please answer the question before submission.')
   }
@@ -212,11 +220,14 @@ function main() {
   startQuiz()
 }
 
-function startQuiz() {
+function initializeStore(){
   STORE.score=0
   STORE.questionIndex=0
-  console.log(STORE)
-  generateStartPg()
+}
+
+function startQuiz() {
+  bindEventHandlers()
+  initializeStore();
   renderStartPg()
 }
 
