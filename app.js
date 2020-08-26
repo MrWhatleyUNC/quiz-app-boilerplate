@@ -90,12 +90,13 @@ function generateStartPg() {
 function generateQuestionPage() {
   //this should create the html for the question page
   return `
-  <div class="box"> 
+  <div class="box">
+    <form action="submit" class="answers"> 
     <h2>Question ${STORE.questionIndex+1} of ${STORE.questions.length}</h2>
     <div class="container">${STORE.questions[STORE.questionIndex].question}</div>
     <h2>Answers:</h2>
     <div class="container">
-    <form action="submit" class="answers">
+    
       <label for="ans1">
       <input type="radio" id="ans1" name="answer" value="${STORE.questions[STORE.questionIndex].answers[0]}">
       ${STORE.questions[STORE.questionIndex].answers[0]}
@@ -110,8 +111,8 @@ function generateQuestionPage() {
       </label><br>
       <button class='submit' type="submit">Submit</button>
     </form>
-    <div class='results'></div>
     </div>
+    <div class='results'></div>
   </div>
   `
 };
